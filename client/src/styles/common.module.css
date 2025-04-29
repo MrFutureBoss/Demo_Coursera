@@ -1,0 +1,48 @@
+.home_logo {
+    width: 100%;
+    height: 100%;
+}
+
+.home_search {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.home_searchbutton {
+    font-size: 18px;
+    cursor: pointer;
+    padding: 10px;
+    color: #FFF;
+    background-color: #0056d2;
+    border-radius: 50px;
+}
+
+.home_searchbutton:hover {
+    /* color: #FFF; */
+    background-color: #3677d3;
+}
+
+.dropdown_account {
+    padding: 0px 10px;
+    width: fit-content;
+    height: 100%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    /* border: 1px solid black;
+    border-radius:
+     25px; */
+}
+
+
+.notification_icon {
+    font-size: 2rem;
+    cursor: pointer;
+    padding: 10px;
+    color: #0d4283;
+    border-radius: 50px;
+    height: fit-content;
+}

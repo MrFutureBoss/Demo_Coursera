@@ -1,0 +1,35 @@
+.staff_header1{
+    height: 4rem;
+    padding: 0 3rem;
+    margin: 0 14.531rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.col1{ 
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.col2{ 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.col2 input {
+    display: block;
+}
+
+.col2 span{
+    height: fit-content;
+}
+
+.col3{ 
+    display: flex;
+}
+
