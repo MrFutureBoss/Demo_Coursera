@@ -1,10 +1,19 @@
 .staff_header1{
     height: 4rem;
     padding: 0 3rem;
-    margin: 0 14.531rem;
+    margin: 0 10rem;
     position: sticky;
     top: 0;
     z-index: 1000;
+}
+
+.staff_header1_mobile{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+    height: 30px;
+    margin: 20px;
 }
 
 .col1{ 
