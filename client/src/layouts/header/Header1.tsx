@@ -10,7 +10,7 @@ import { BellOutlined, MenuOutlined } from "@ant-design/icons";
 
 const { useBreakpoint } = Grid;
 
-export default function StaffHomeHeader1() {
+export default function Header1() {
   const screens = useBreakpoint();
   const [drawerOpen, setDrawerOpen] = useState(false);
 
@@ -66,13 +66,13 @@ export default function StaffHomeHeader1() {
   // Desktop version: original layout
   return (
     <Row className={header1.staff_header1} align="middle">
-      <Col sm={3} className={header1.col1}>
+      <Col sm={4} className={header1.col1}>
         <Logo className={common.home_logo} />
       </Col>
       <Col sm={12} className={header1.col2}>
         <HeaderSearch />
       </Col>
-      <Col sm={9} style={{ display: "flex", justifyContent: "end" }}>
+      <Col sm={8} style={{ display: "flex", justifyContent: "end" }}>
         <div className="flex justify-center items-center">
           <BellOutlined className={common.notification_icon} />
         </div>

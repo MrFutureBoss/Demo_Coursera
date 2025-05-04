@@ -6,7 +6,7 @@ export default function HeaderSearch() {
         <div className={common.home_search}>
             <Input
                 placeholder="Enter somthing..."
-                style={{ width: 500, borderRadius: '25px' }}
+                style={{ width: "30rem", borderRadius: '25px' }}
                 suffix={
                     <Tooltip placement="rightTop" title="Go to search">
                       <SearchOutlined className={common.home_searchbutton} />

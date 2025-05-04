@@ -1,8 +1,12 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { AntdRegistry } from '@ant-design/nextjs-registry';
-
+import { AntdRegistry } from "@ant-design/nextjs-registry";
+import StaffHomeHeader1 from "@/layouts/header/Header1";
+import StaffHomeHeader2 from "@/layouts/header/Header2";
+import styles from "@/styles/staff_home_styles/staff_home_common.module.css";
+import "../styles/custom_antd_css/tablist.css";
+import ClientProvider from "@/components/ClientProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,7 +33,21 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <AntdRegistry>{children}</AntdRegistry>
+        <ClientProvider>
+          <div className="w-full">
+            <div className={styles.staff_header}>
+              <div style={{ margin: "0 10rem" }}>
+                <StaffHomeHeader1 />
+              </div>
+              <div style={{ width: "100%", margin: "auto" }}>
+                <StaffHomeHeader2 />
+              </div>
+            </div>
+            <AntdRegistry>
+              <div>{children}</div>
+            </AntdRegistry>
+          </div>
+        </ClientProvider>
       </body>
     </html>
   );

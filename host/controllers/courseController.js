@@ -1,11 +1,14 @@
 import { getAllCourses, getCourseById, createCourse, updateCourse, deleteCourse } from '../repositories/courseRepository.js';
 
 /**
- * Lấy danh sách tất cả các khoá học
+ * Lấy danh sách tất cả các khoá học (có phân trang)
+ * Query params: ?offset=0&limit=8
  */
 export const getAllCoursesController = async (req, res) => {
   try {
-    const courses = await getAllCourses();
+    const offset = parseInt(req.query.offset) || 0;
+    const limit = parseInt(req.query.limit) || 8;
+    const courses = await getAllCourses(offset, limit);
     res.json({
       message: 'Fetched course list successfully',
       data: courses,

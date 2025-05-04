@@ -1,8 +1,9 @@
 import courseRouter from './courseRoutes.js';
+import lessonRouter from './lessonRoutes.js';
 
 const routes = {
-    courseRouter
+    courseRouter,
+    lessonRouter
 }
 
 export default routes;
-

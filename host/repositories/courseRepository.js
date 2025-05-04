@@ -1,8 +1,8 @@
 import db from '../services/db.js';
 
-// Lấy tất cả khoá học
-export const getAllCourses = async () => {
-  const [rows] = await db.query('SELECT * FROM e_course');
+// Lấy tất cả khoá học (có phân trang)
+export const getAllCourses = async (offset = 0, limit = 8) => {
+  const [rows] = await db.query('SELECT * FROM e_course LIMIT ? OFFSET ?', [limit, offset]);
   return rows;
 };
 

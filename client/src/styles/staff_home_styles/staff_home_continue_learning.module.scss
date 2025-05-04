@@ -1,0 +1,76 @@
+@import "@/styles/scss/color.scss";
+
+.home_continue_learning {
+  background-color: #f2f5fa;
+  margin: 2rem 0;
+  padding: 2rem 10rem;
+}
+
+.home_continue_learning .overview {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--color-black);
+}
+
+.home_continue_learning .title {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--color-black);
+}
+
+.home_continue_learning .view_all_learning {
+  font-size: 0.9rem;
+  font-weight: 550;
+  color: #0056D2;
+}
+
+.home_continue_learning .view_all_learning:hover {
+    text-decoration: underline;
+  }
+  
+
+.home_continue_learning .box {
+  background-color: #fff;
+  overflow: hidden;
+  border-radius: 16px;
+  border: 2px solid #e8eef7;
+  padding: 24px 24px;
+  width: fit-content;
+}
+
+.home_continue_learning .banner_box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 120px;
+  width: fit-content;
+  border-radius: 5px;
+  object-fit: cover;
+}
+
+.home_continue_learning .banner_image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.home_continue_learning .get_start_box {
+  margin-top: 1rem;
+  background-color: #fff;
+  overflow: hidden;
+  border-radius: 16px;
+  border: 2px solid #e8eef7;
+  padding: 24px 24px;
+  width: 100%;
+  height: fit-content;
+}
+
+.home_continue_learning .tracking_progess_box{
+  background-color: #fff;
+  overflow: hidden;
+  border-radius: 16px;
+  border: 2px solid #e8eef7;
+  padding: 24px 24px;
+  width: fit-content;
+}

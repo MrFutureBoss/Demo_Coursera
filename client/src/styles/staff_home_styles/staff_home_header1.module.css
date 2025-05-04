@@ -1,7 +1,5 @@
 .staff_header1{
     height: 4rem;
-    padding: 0 3rem;
-    margin: 0 10rem;
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -18,9 +16,9 @@
 
 .col1{ 
     height: 100%;
-    display: flex;
+    display: flex !important;
     align-items: center;
-    justify-content: center;
+    justify-content: start;
 }
 
 .col2{ 
