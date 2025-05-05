@@ -1,18 +1,18 @@
 import { Col, Row, Button } from "antd";
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { useDispatch } from "@/components/hooks";
-import type { RootState } from "@/store/types";
+import { useDispatch, useSelector } from "react-redux";
+import type { RootState } from "@/store/rootReducer";
+import type { AppDispatch } from "@/store/index";
+import type { Course } from "@/store/reducers/courseReducer";
 import styles from "@/styles/staff_home_styles/staff_home_most_enrolled.module.scss";
 import CardProducts from "@/components/cards/CardProducts";
-import { CourseApi } from "@/components/cards/CardProducts";
 import { get_all_courses } from "@/store/reducers/courseReducer";
 
 export default function MostEnrolled() {
-  const dispatch = useDispatch();
-  const courses = useSelector((state: RootState) => state.courses.courses);
-  const loading = useSelector((state: RootState) => state.courses.loading);
-  const error = useSelector((state: RootState) => state.courses.error);
+  const dispatch = useDispatch<AppDispatch>();
+  const courses = useSelector((state: RootState) => state.course.courses);
+  const loading = useSelector((state: RootState) => state.course.loading);
+  const error = useSelector((state: RootState) => state.course.error);
   console.log("courses in MostEnrolled:", courses);
   // Phân trang: offset/limit
   const [displayCount, setDisplayCount] = useState(4);
@@ -49,7 +49,7 @@ export default function MostEnrolled() {
           <Row gutter={[16, 16]}>
             {[...Array(limit)].map((_, idx) => (
               <Col lg={6} md={12} key={idx}>
-                <CardProducts course={{} as CourseApi} loading={true} />
+                <CardProducts course={{} as Course} loading={true} />
               </Col>
             ))}
           </Row>
@@ -59,7 +59,7 @@ export default function MostEnrolled() {
           <>
             <Row gutter={[16, 16]}>
               {visibleCourses.length > 0 ? (
-                visibleCourses.map((course: CourseApi, idx: number) => (
+                visibleCourses.map((course: Course, idx: number) => (
                   <Col lg={6} md={12} key={course.id || idx}>
                     <CardProducts course={course} loading={false} />
                   </Col>

@@ -1,7 +1,8 @@
-import { CourseApi } from "@/components/cards/CardProducts";
+// Removed CourseApi import and usages after migration to Course type in reducers
+// If you need a course type, import from '@/store/reducers/courseReducer'
 
 export interface CoursesState {
-  courses: CourseApi[];
+  courses: any[];
   loading: boolean;
   error: string | null;
 }
@@ -15,4 +16,3 @@ export interface GetAllCoursesParams {
   offset: number;
   limit: number;
 }
-

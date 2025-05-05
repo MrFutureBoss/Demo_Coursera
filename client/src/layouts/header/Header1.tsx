@@ -40,7 +40,7 @@ export default function Header1() {
           placement="left"
           onClose={() => setDrawerOpen(false)}
           open={drawerOpen}
-          bodyStyle={{ padding: 0 }}
+          styles={{ body: { padding: 0} }}
         >
           <div style={{ padding: 16 }}>
             <HeaderSearch />

@@ -1,19 +1,49 @@
-@import "@/styles/scss/color.scss";
+@use "@/styles/scss/color.scss" as color;
 
 .course_detail .breadcrumb {
     padding: 1rem 10rem;
 }
 
 .course_detail .course_banner {
-    display: flex;
+   display: flex;
    background-color: #f2f6fd;
    padding: 5rem 10rem;
    line-height: 1.5;
    width: 100%;
+   position: relative;
+   overflow: hidden;
 }
+
+.course_detail .course_banner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background-image: var(--banner-url);
+  background-size: cover;
+  background-position: center;
+  filter: blur(8px) brightness(0.5);
+  pointer-events: none;
+}
+
+.course_detail .course_banner > * {
+  position: relative;
+  z-index: 2;
+}
+
 .course_detail .course_banner_content {
     width: 100%;
     display: flex;
+}
+
+.course_detail .course_banner_content .course_banner_content_box {
+    width: fit-content;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    background-color: #fff;
+    padding: 2rem 3rem;
+    border-radius: 16px;
 }
 
 .course_detail .course_banner_content .title {
@@ -21,14 +51,23 @@
     font-weight: 600;
     color: var(--color-black);
     padding-bottom: 1rem;
+    width: fit-content;
+}
+
+.course_detail .course_banner_content .overview {
+    font-size: 1rem;
+    font-weight: 400;
+    color: #6c757d;
+    width: fit-content;
 }
 
 .course_detail .course_banner_content .description {
     font-size: 1rem;
     font-weight: 400;
     color: var(--color-black);
-    width: 45rem;
+    max-width: 45rem;
     padding-bottom: 1rem;
+    width: fit-content;
 }
 
 .course_detail .course_banner_content .enrolled {
@@ -51,5 +90,3 @@
     justify-content: center;
     align-items: center;
 }
-
-
