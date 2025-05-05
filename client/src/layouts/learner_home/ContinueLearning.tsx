@@ -63,14 +63,14 @@ export default function ContinueLearning() {
                 <div className={styles.get_start_box}>
                   <Row>
                     <Col lg={14}>
-                      <div className={styles.get_start_button}>
+                      <div>
                         <p className="font-bold">Project Overview</p>
                         <p className="text-gray-500">Reading: 10%</p>
                       </div>
                     </Col>
                     <Col lg={10}>
-                      <div className={styles.get_start_button}>
-                        <Button type="primary" className="">
+                      <div className="flex justify-center items-center">
+                        <Button type="primary">
                           Get started
                         </Button>
                       </div>

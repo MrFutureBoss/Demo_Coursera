@@ -9,6 +9,11 @@ const pool = mysql.createPool({
   database: process.env.DB_NAME,
 });
 
+//Test connection
+// pool.query(`SELECT * FROM elearning.e_course;`, (err, res)=>{
+//   return console.log(res)
+// })
+
 export default pool.promise();
 console.log("DB_HOST:", process.env.DB_HOST);
 console.log("DB_USER:", process.env.DB_USER);

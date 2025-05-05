@@ -1,0 +1,55 @@
+@import "@/styles/scss/color.scss";
+
+.course_detail .breadcrumb {
+    padding: 1rem 10rem;
+}
+
+.course_detail .course_banner {
+    display: flex;
+   background-color: #f2f6fd;
+   padding: 5rem 10rem;
+   line-height: 1.5;
+   width: 100%;
+}
+.course_detail .course_banner_content {
+    width: 100%;
+    display: flex;
+}
+
+.course_detail .course_banner_content .title {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--color-black);
+    padding-bottom: 1rem;
+}
+
+.course_detail .course_banner_content .description {
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--color-black);
+    width: 45rem;
+    padding-bottom: 1rem;
+}
+
+.course_detail .course_banner_content .enrolled {
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--color-black);
+}
+
+.course_detail .course_banner_content .enrolled .number {
+    font-weight: 600;
+}
+
+.course_detail .course_info {
+    width: 50%;
+    padding: 2rem 5rem;
+}
+
+.course_detail .course_info_box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
