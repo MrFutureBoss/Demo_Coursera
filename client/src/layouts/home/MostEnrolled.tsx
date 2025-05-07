@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import type { RootState } from "@/store/rootReducer";
 import type { AppDispatch } from "@/store/index";
-import type { Course } from "@/store/reducers/courseReducer";
+import type { Course } from "@/store/interface/courses";
 import styles from "@/styles/staff_home_styles/staff_home_most_enrolled.module.scss";
 import CardProducts from "@/components/cards/CardProducts";
 import { get_all_courses } from "@/store/reducers/courseReducer";

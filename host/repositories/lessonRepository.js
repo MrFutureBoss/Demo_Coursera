@@ -38,6 +38,12 @@ export const updateLesson = async (id, lesson) => {
   return { id, ...lesson };
 };
 
+// Lấy tất cả section theo lesson_id
+export const getAllSectionByLessonId = async (lessonId) => {
+  const [rows] = await db.query('SELECT * FROM e_lesson_section WHERE lesson_id = ?', [lessonId]);
+  return rows;
+};
+
 // Xóa bài học
 export const deleteLesson = async (id) => {
   await db.query('DELETE FROM e_lesson WHERE id=?', [id]);

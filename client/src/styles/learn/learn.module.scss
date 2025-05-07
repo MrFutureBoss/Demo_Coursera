@@ -1,0 +1,61 @@
+.lesson_list_title {
+  display: flex;
+  justify-content: space-between;
+}
+
+.lesson_list_title p:nth-child(1) {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.lesson_list_title p:nth-child(2) {
+  font-size: 0.8rem;
+  color: #8495b0;
+  font-weight: 300;
+}
+
+.lesson_section_list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+}
+
+.lesson_section_list .left_content {
+  display: flex;
+}
+
+.lesson_section_list .iconbox {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  margin: 0 0.7rem;
+}
+
+.lesson_section_list .round_icon {
+  width: fit-content;
+  height: fit-content;
+  padding: 0.4rem;
+  border-radius: 50%;
+  background-color: rgb(232, 238, 247);
+}
+
+.lesson_section_list .icon {
+  font-size: 1rem;
+}
+
+.lesson_section_list:hover {
+  cursor: pointer;
+  background-color: rgb(232, 238, 247);
+}
+
+.lesson_section_list .right_content p:nth-child(1) {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.lesson_section_list .right_content p:nth-child(2) {
+  font-size: 0.85rem;
+  color: #8495b0;
+  font-weight: 300;
+}

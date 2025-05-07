@@ -5,16 +5,17 @@ import { get_course_by_id } from '@/store/reducers/courseReducer';
 import React, { useEffect, use } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import type { AppDispatch } from '@/store/index';
-import type { Course } from '@/store/reducers/courseReducer';
+import type { Course } from '@/store/interface/courses';
 
 interface LearnDetailPageProps {
   params: { id: string; name: string } | Promise<{ id: string; name: string }>;
 }
 
 export default function LearnDetailPage({ params }: LearnDetailPageProps) {
-  // Safe unwrapping for both Promise and object params
-  const unwrappedParams = typeof (params as any).then === 'function' ? use(params as Promise<{ id: string; name: string }>) : params;
-  const { id, name } = unwrappedParams as { id: string; name: string };
+  const unwrappedParams = params instanceof Promise 
+    ? use(params as Promise<{ id: string; name: string }>) 
+    : params;
+  const { id } = unwrappedParams as { id: string };
   const dispatch = useDispatch<AppDispatch>();
   const course = useSelector((state: RootState) => state.course.course as Course);
 

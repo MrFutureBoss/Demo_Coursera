@@ -1,3 +1,4 @@
+/* eslint-disable react/no-children-prop */
 /* eslint-disable @next/next/no-img-element */
 import React from 'react';
 import Link from 'next/link';
@@ -5,7 +6,8 @@ import { Badge, Card } from "antd";
 import styles from "@/styles/staff_home_styles/staff_home_most_enrolled.module.scss";
 import CustomTooltip from '../tooltips/CustomTooltip';
 import Award from '../icons/Award';
-import type { Course } from '@/store/reducers/courseReducer';
+import type { Course } from '@/store/interface/courses';
+import { urlToHyphenated } from '@/utilities/urlToHyphenated';
 
 interface CardProductsProps {
   course: Partial<Course>;
@@ -16,7 +18,7 @@ const CardProducts: React.FC<CardProductsProps> = ({ course, loading = false }) 
 
   return (
     <div>
-      <Link href={course.id ? `/learn/${course.id}/${course.topic_name}` : '#'} style={{ textDecoration: 'none' }}>
+      <Link href={course.id ? `/course/${course.id}/${urlToHyphenated(course?.topic_name || '')}` : '#'} style={{ textDecoration: 'none' }}>
         <Card
           className={styles.cardContainer}
           style={{ width: 300 }}

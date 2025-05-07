@@ -5,7 +5,23 @@ import {
   createLesson,
   updateLesson,
   deleteLesson,
+  getAllSectionByLessonId,
 } from "../repositories/lessonRepository.js";
+
+/**
+ * Lấy tất cả section theo lesson_id
+ */
+export const getAllSectionByLessonIdController = async (req, res) => {
+  try {
+    const sections = await getAllSectionByLessonId(req.params.lessonId);
+    res.json({
+      message: "Fetched lesson sections successfully",
+      data: sections,
+    });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
 
 /**
  * Lấy danh sách tất cả bài học

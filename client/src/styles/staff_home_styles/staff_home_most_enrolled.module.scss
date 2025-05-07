@@ -1,8 +1,14 @@
 @use "@/styles/scss/color.scss" as color;
 
+@media screen and (min-width: 991px) {
+  .home_most_enrolled {
+    padding: 2rem 2rem;
+  }
+}
+
 .home_most_enrolled {
   margin: 2rem 0;
-  padding: 2rem 10rem;
+  padding: 2rem 2rem;
 }
 
 .home_most_enrolled .title {

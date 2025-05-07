@@ -1,5 +1,4 @@
-// Removed CourseApi import and usages after migration to Course type in reducers
-// If you need a course type, import from '@/store/reducers/courseReducer'
+
 
 export interface CoursesState {
   courses: any[];

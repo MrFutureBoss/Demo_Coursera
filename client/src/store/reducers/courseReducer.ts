@@ -1,22 +1,8 @@
 import api from '@/utilities/api';
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { isAxiosError } from 'axios';
+import { Course, CoursesState } from '@/store/interface/courses';
 
-// Types for course and error
-export interface Course {
-  id: number;
-  [key: string]: any;
-}
-
-export interface CoursesState {
-  courses: Course[];
-  loading: boolean;
-  error: any;
-  course: Course | Record<string, any>;
-}
-
-// No CourseApi references remain. All types are defined in this file.
-
-// Async thunks
 export const get_all_courses = createAsyncThunk(
   'courses/get_all_courses',
   async (
@@ -26,10 +12,17 @@ export const get_all_courses = createAsyncThunk(
     try {
       const params = { offset: info.offset, limit: info.limit };
       const { data } = await api.get(`/courses`, { params });
-      console.log(data);
-      return fulfillWithValue(data);
-    } catch (error: any) {
-      return rejectWithValue(error.response?.data ?? error.message);
+      console.log("Redux: ",data.data);
+      return fulfillWithValue(data.data);
+    } catch (error: unknown) {
+  if (isAxiosError(error)) {
+    return rejectWithValue(error.response?.data ?? error.message);
+  }
+  if (error instanceof Error) {
+    return rejectWithValue(error.message);
+  }
+  return rejectWithValue(String(error));
+
     }
   }
 );
@@ -43,19 +36,26 @@ export const get_course_by_id = createAsyncThunk(
     try {
       const params = { id: info.id };
       const { data } = await api.get(`/courses/${info.id}`, { params });
-      console.log(data);
-      return fulfillWithValue(data);
-    } catch (error: any) {
-      return rejectWithValue(error.response?.data ?? error.message);
+      console.log("Redux: ",data.data);
+      return fulfillWithValue(data.data);
+    } catch (error: unknown) {
+  if (isAxiosError(error)) {
+    return rejectWithValue(error.response?.data ?? error.message);
+  }
+  if (error instanceof Error) {
+    return rejectWithValue(error.message);
+  }
+  return rejectWithValue(String(error));
+
     }
   }
 );
 
 const initialState: CoursesState = {
   courses: [],
-  loading: true,
+  loading: false,
   error: null,
-  course: {},
+  course: null,
 };
 
 const coursesSlice = createSlice({
@@ -73,24 +73,24 @@ const coursesSlice = createSlice({
       .addCase(get_all_courses.pending, (state) => {
         state.loading = true;
       })
-      .addCase(get_all_courses.fulfilled, (state, action: PayloadAction<any>) => {
+      .addCase(get_all_courses.fulfilled, (state, action: PayloadAction<Course[]>) => {
         state.loading = false;
-        state.courses = Array.isArray(action.payload.data) ? action.payload.data : [];
+        state.courses = Array.isArray(action.payload) ? action.payload : [];
       })
-      .addCase(get_all_courses.rejected, (state, action: PayloadAction<any>) => {
+      .addCase(get_all_courses.rejected, (state, action: PayloadAction<unknown>) => {
         state.loading = false;
-        state.error = action.payload;
+        state.error = typeof action.payload === 'string' ? action.payload : "Unknown error";
       })
       .addCase(get_course_by_id.pending, (state) => {
         state.loading = true;
       })
-      .addCase(get_course_by_id.fulfilled, (state, action: PayloadAction<any>) => {
+      .addCase(get_course_by_id.fulfilled, (state, action: PayloadAction<Course>) => {
         state.loading = false;
         state.course = action.payload;
       })
-      .addCase(get_course_by_id.rejected, (state, action: PayloadAction<any>) => {
+      .addCase(get_course_by_id.rejected, (state, action: PayloadAction<unknown>) => {
         state.loading = false;
-        state.error = action.payload;
+        state.error = typeof action.payload === 'string' ? action.payload : "Unknown error";
       });
   },
 });
