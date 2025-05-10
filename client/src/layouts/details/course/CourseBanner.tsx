@@ -12,7 +12,7 @@ import { urlToHyphenated } from "@/utilities/urlToHyphenated";
 export default function CourseBanner({ course }: { course: Course }) {
   const router = useRouter();
   const handleEnrollNow = () => {
-    router.push(`/learn/${course?.id}/${urlToHyphenated(course?.topic_name)}/progress`);
+    router.push(`/learn/${urlToHyphenated(course?.topic_name)}-${course?.id}/progress`);
   };
   return (
     <div className={styles.course_banner_content}>

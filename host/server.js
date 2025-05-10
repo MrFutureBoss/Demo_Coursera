@@ -14,6 +14,8 @@ const PORT = process.env.PORT || 9999;
 app.use(bodyParser.json());
 app.use('/api/courses', routes.courseRouter);
 app.use('/api/lessons', routes.lessonRouter);
+app.use('/api/sections', routes.takeSectionRouter);
+app.use('/api/tests', routes.takeTestRouter);
 
 app.get('/', (req, res) => {
   res.send('Backend MVC with MySQL is running!');

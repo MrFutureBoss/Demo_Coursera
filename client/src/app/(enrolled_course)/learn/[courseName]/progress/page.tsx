@@ -6,26 +6,27 @@ import type { Course } from '@/store/interface/courses';
 import { RootState } from '@/store/rootReducer';
 import { get_course_by_id } from '@/store/reducers/courseReducer';
 import LearnHome from '@/layouts/enrolled_course/LearnHome';
+import { getIdFromURL } from '@/utilities/getIdFromURL';
 interface ProgressPageProps {
-    params: { courseId: string; courseName: string } | Promise<{ courseId: string; courseName: string }>;
+    params: { courseName: string } | Promise<{ courseName: string }>;
 }
 
 export default function ProgressPage({ params }: ProgressPageProps) {
     const unwrappedParams = params instanceof Promise 
-    ? use(params as Promise<{ courseId: string; courseName: string }>) 
+    ? use(params as Promise<{ courseName: string }>) 
     : params;
-    const { courseId } = unwrappedParams as { courseId: string };
+    const { courseName } = unwrappedParams as { courseName: string };
     const dispatch = useDispatch<AppDispatch>();
     const course = useSelector((state: RootState) => state.course.course as Course);
 
     useEffect(() => {
-      if (courseId) {
-        dispatch(get_course_by_id({ id: courseId }));
+      if (courseName) {
+        dispatch(get_course_by_id({ id: getIdFromURL(courseName) }));
       }
-    }, [dispatch, courseId]);  
+    }, [dispatch, courseName]);  
     return (
       <div>
-          <LearnHome course={course} />
+          <LearnHome course={course}/>
       </div>
     );
 }

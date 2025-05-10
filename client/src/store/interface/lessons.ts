@@ -1,6 +1,12 @@
 export interface Lesson {
     id: number;
-    [key: string]: string | number;
+    course_id: number;
+    name: string;
+    detail: string;
+    type: string;
+    time: number;
+    updated_at: string;
+    updated_by: number;
   }
   
   export interface LessonsState {

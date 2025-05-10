@@ -5,15 +5,15 @@ import {
   createLesson,
   updateLesson,
   deleteLesson,
-  getAllSectionByLessonId,
+  getAllSectionAndQuizByLessonId,
 } from "../repositories/lessonRepository.js";
 
 /**
- * Lấy tất cả section theo lesson_id
+ * Lấy tất cả section và quiz theo lesson_id
  */
-export const getAllSectionByLessonIdController = async (req, res) => {
+export const getAllSectionAndQuizByLessonIdController = async (req, res) => {
   try {
-    const sections = await getAllSectionByLessonId(req.params.lessonId);
+    const sections = await getAllSectionAndQuizByLessonId(req.params.lessonId);
     res.json({
       message: "Fetched lesson sections successfully",
       data: sections,

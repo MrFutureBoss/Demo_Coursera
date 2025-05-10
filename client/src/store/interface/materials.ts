@@ -1,4 +1,4 @@
-export interface Section {
+export interface Material {
     id: number;
     name: string;
     time: number;
@@ -7,13 +7,14 @@ export interface Section {
     detail: string;
     lesson_id: number;
     course_id: number;
+    material_id_ByType: number;
     updated_at: string;
     updated_by: number;    
   }
   
-  export interface SectionsState {
-  sections: Section[];
+  export interface MaterialsState {
+  materialsByLessonId: { [lessonId: string]: Material[] };
   loading: boolean;
   error: string | null;
-  section: Section | null;
+  material: Material | null;
 }

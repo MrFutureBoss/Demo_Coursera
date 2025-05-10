@@ -18,7 +18,7 @@ const CardProducts: React.FC<CardProductsProps> = ({ course, loading = false }) 
 
   return (
     <div>
-      <Link href={course.id ? `/course/${course.id}/${urlToHyphenated(course?.topic_name || '')}` : '#'} style={{ textDecoration: 'none' }}>
+      <Link href={course.id ? `/course/${urlToHyphenated(course?.topic_name || '')}-${course.id}` : '#'} style={{ textDecoration: 'none' }}>
         <Card
           className={styles.cardContainer}
           style={{ width: 300 }}

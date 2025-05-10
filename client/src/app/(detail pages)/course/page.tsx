@@ -2,6 +2,6 @@ import React from 'react'
 
 export default function page() {
   return (
-    <>Nothing</>
+    <div>Comming Soon!</div>
   )
 }

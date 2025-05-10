@@ -27,6 +27,30 @@ export const get_lesson_by_course_id = createAsyncThunk(
   }
 );
 
+export const get_lesson_by_lesson_id = createAsyncThunk(
+  'lessons/get_lesson_by_lesson_id',
+  async (
+    info: { id: number | string } = { id: 0 },
+    { rejectWithValue, fulfillWithValue }
+  ) => {
+    try {
+      const params = { id: info.id };
+      const { data } = await api.get(`/lessons/${info.id}`, { params });
+      console.log("Redux lesson by lesson id: ",data.data);
+      return fulfillWithValue(data.data);
+    } catch (error: unknown) {
+  if (isAxiosError(error)) {
+    return rejectWithValue(error.response?.data ?? error.message);
+  }
+  if (error instanceof Error) {
+    return rejectWithValue(error.message);
+  }
+  return rejectWithValue(String(error));
+
+    }
+  }
+);
+
 const initialState: LessonsState = {
   lessons: [],
   loading: false,
@@ -55,6 +79,17 @@ const lessonsSlice = createSlice({
         state.lessons = Array.isArray(action.payload) ? action.payload : [];
       })
       .addCase(get_lesson_by_course_id.rejected, (state, action: PayloadAction<unknown>) => {
+        state.loading = false;
+        state.error = typeof action.payload === 'string' ? action.payload : "Unknown error";
+      })
+      .addCase(get_lesson_by_lesson_id.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(get_lesson_by_lesson_id.fulfilled, (state, action: PayloadAction<Lesson>) => {
+        state.loading = false;
+        state.lesson = action.payload;
+      })
+      .addCase(get_lesson_by_lesson_id.rejected, (state, action: PayloadAction<unknown>) => {
         state.loading = false;
         state.error = typeof action.payload === 'string' ? action.payload : "Unknown error";
       })

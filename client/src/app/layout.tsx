@@ -8,7 +8,8 @@ import StaffHomeHeader2 from "@/layouts/header/Header2";
 import styles from "@/styles/staff_home_styles/staff_home_common.module.css";
 import "../styles/custom_antd_css/tablist.css";
 import "../styles/custom_antd_css/sidebar.css";
-import ClientProvider from "@/components/ClientProvider";
+import ClientProvider from "@/providers/ClientProvider";
+import PersistProvider from "@/providers/PersistProvider";
 import { usePathname } from "next/navigation";
 
 const geistSans = Geist({
@@ -35,6 +36,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ClientProvider>
+          <PersistProvider>
           <div className="w-full">
             <div className={styles.staff_header}>
               <div style={{ margin: "0 10rem" }}>
@@ -50,6 +52,7 @@ export default function RootLayout({
               <div>{children}</div>
             </AntdRegistry>
           </div>
+          </PersistProvider>
         </ClientProvider>
       </body>
     </html>

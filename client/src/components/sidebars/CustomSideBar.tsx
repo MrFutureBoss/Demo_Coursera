@@ -27,7 +27,6 @@ export default function CustomSideBar({ items }: SideBarProps) {
         {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
       </Button>
       <Menu
-        inlineCollapsed={collapsed}
         defaultSelectedKeys={["1"]}
         defaultOpenKeys={["sub1"]}
         onClick={onClick}
