@@ -12,8 +12,10 @@ import type { Lesson } from '@/store/interface/lessons'
 import type { Section } from '@/store/interface/sections'
 import ReadingDocument from './section/ReadingDocument'
 import WatchingVideo from './section/WatchingVideo'
+import type { Test } from '@/store/interface/tests'
+import TestInfo from './test/TestInfo'
 
-export default function LearningLesson({course, lesson, section}: {course: Course, lesson: Lesson, section: Section}) {
+export default function LearningLesson({course, lesson, material}: {course: Course, lesson: Lesson, material: Section | Test}) {
     const routes = [
         {
           title: <Link href="/">Home</Link>,
@@ -35,14 +37,14 @@ export default function LearningLesson({course, lesson, section}: {course: Cours
         {
             title: (
               <Link
-                href={`/learn/${urlToHyphenated(course?.topic_name)}-${course?.id}/lesson/${urlToHyphenated(lesson?.name)}-${lesson?.id}/progress`}
+                href={`/learn/${urlToHyphenated(course?.topic_name)}-${course?.id}/progress`}
               >
                 {lesson?.name}
               </Link>
             ),
           },
         {
-          title: `${section?.name}`,
+          title: `${material?.name}`,
         },
       ];
     
@@ -73,14 +75,17 @@ export default function LearningLesson({course, lesson, section}: {course: Cours
         <CustomBreadCrumb items={routes} />
       </div>
       <div className="flex justify-center">
-        <div className="w-[45rem] max-w-[100vw]">
-             {section?.type === "Document" && (
+        <div>
+             {material?.type === "Document" && (
                 <ReadingDocument/>
               )}
-              {section?.type === "Video" && (
+              {material?.type === "Video" && (
                 <WatchingVideo/>
               )}
-        </div>
+              {material?.type === "Test" && (
+                <TestInfo test={material as Test}/>
+              )}
+        </div>  
       </div>
     </Col>
   </Row>

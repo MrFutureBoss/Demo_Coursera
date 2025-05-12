@@ -1,0 +1,20 @@
+@use "@/styles/scss/color.scss" as color;
+
+.card_test_box{
+    background-color: #fff !important;
+}
+
+.card_test_box .choice:hover{
+    cursor: pointer;
+    background-color: #E8EEF7 !important;
+}
+
+
+.card_test_box .title{
+    background-color: #fff !important;
+}
+   
+.card_test_box .body{
+    background-color: #fff !important;
+}
+

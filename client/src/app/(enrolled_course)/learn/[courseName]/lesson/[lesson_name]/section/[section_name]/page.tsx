@@ -34,7 +34,7 @@ export default function LessonPage({ params }: LessonPageProps) {
        }, [dispatch, courseName, lesson_name, section_name]);  
     return (
       <div>
-          <LearningLesson course={course} lesson={lesson} section={section}/>
+          <LearningLesson course={course} lesson={lesson} material={section}/>
       </div>
     );
 }

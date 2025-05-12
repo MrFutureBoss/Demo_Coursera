@@ -1,0 +1,23 @@
+@use "@/styles/scss/color.scss" as color;
+
+.test_info_do_test_now {
+    align-items: center;
+    margin-bottom: 1rem;
+    background-color: #F0F6FF;
+    padding: 1rem;
+    width: 40rem;
+    border-radius: 8px;
+}
+
+.test_info_do_test_now .title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-black);
+    margin-bottom: 1rem;
+}
+.test_info_do_test_now .details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #5B6780;
+}

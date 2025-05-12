@@ -1,0 +1,83 @@
+@use "@/styles/scss/color.scss" as color;
+
+.test_tracking_box{
+   margin-top: 3rem;
+   margin-left: 1rem;
+   border: 1px solid #e8eef7;
+   padding: 1rem;
+   width: 20rem;
+   position: sticky;
+   top: 8rem;
+   z-index: 1000;
+   background-color: #fbfafa;
+}
+
+.test_tracking_box .time_left_value{
+   font-size: 2rem;
+   font-weight: 600;
+}
+
+.test_tracking_box .submit_button_box{
+   display: flex;
+   justify-content: center;
+   margin-bottom: 1rem;
+}
+
+.test_tracking_box .submit_button_box button{
+   width: 100%;
+   font-size: 1rem;
+   font-weight: 500;
+   padding: 1.5rem 0;
+}
+
+.test_tracking_box .test_tracking_info{
+   margin-bottom: 1rem;
+}
+
+.test_tracking_box .test_tracking_progress{
+}
+
+.test_tracking_box .test_tracking_progress .item{
+   cursor: pointer;
+   border-radius: 8px;
+   padding: 0.5rem;
+   border: 1px solid #393939;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.test_tracking_box .test_tracking_progress .item_active{
+   cursor: pointer;
+   border-radius: 8px;
+   padding: 0.5rem;
+   border: 1px solid #0056d2;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   color: #000;
+}
+
+.test_tracking_box .test_tracking_progress .item_choice{
+   cursor: pointer;
+   border-radius: 8px;
+   padding: 0.5rem;
+   border: 1px solid #393939;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   background-color: #0056d2;
+   color: #fff;
+}
+
+.test_tracking_box .test_tracking_progress .item p{
+   font-size: 0.8rem;
+   font-weight: 450;
+}
+
+.test_tracking_box .test_tracking_progress .item:hover{
+   cursor: pointer;
+   background-color: #0056d2;
+   color: #fff;
+}
+
