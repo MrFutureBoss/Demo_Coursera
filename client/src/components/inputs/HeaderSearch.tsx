@@ -1,7 +1,11 @@
 import { Input, Tooltip } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 import common from '@/styles/common.module.css'
-export default function HeaderSearch() {
+
+export default function HeaderSearch({onSearch}: {onSearch: (value: string) => void}) {
+    const handleSearch = (value: string) => {
+        onSearch(value);
+    }
     return (
         <div className={common.home_search}>
             <Input
@@ -12,6 +16,7 @@ export default function HeaderSearch() {
                       <SearchOutlined className={common.home_searchbutton} />
                     </Tooltip>
                   }
+                onChange={(e) => handleSearch(e.target.value)}
             />
         </div>
     );

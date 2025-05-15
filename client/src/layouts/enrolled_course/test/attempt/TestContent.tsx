@@ -1,8 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import type { Test } from "@/store/interface/tests";
 import { Skeleton } from "antd";
-import convertStringToArray from "@/utilities/convertStringToArray";
-import styles from "@/styles/learn/card_test.module.scss";
 import SingleChoice from "./type_question/SingleChoice";
 import TextAnswer from "./type_question/TextAnswer";
 import MatchingInformation from "./type_question/MatchingInformation";

@@ -13,13 +13,13 @@ export default function MostEnrolled() {
   const courses = useSelector((state: RootState) => state.course.courses);
   const loading = useSelector((state: RootState) => state.course.loading);
   const error = useSelector((state: RootState) => state.course.error);
-  console.log("courses in MostEnrolled:", courses);
+  // console.log("courses in MostEnrolled:", courses);
   // Phân trang: offset/limit
   const [displayCount, setDisplayCount] = useState(4);
   const limit = 4;
 
   useEffect(() => {
-    dispatch(get_all_courses({ offset: 0, limit: 1000 })); // Lấy hết, hoặc tăng limit nếu dữ liệu lớn
+    dispatch(get_all_courses({ offset: 0, limit: 4 })); // Lấy hết, hoặc tăng limit nếu dữ liệu lớn
   }, [dispatch]);
 
   const handleShowMore = () => {
@@ -29,10 +29,8 @@ export default function MostEnrolled() {
     setDisplayCount(limit);
   };
 
-  // Số lượng còn lại chưa show
   const remainingCount = courses.length - displayCount;
 
-  // Hiển thị chỉ displayCount item đầu tiên
   const visibleCourses = Array.isArray(courses) ? courses.slice(0, displayCount) : [];
 
   return (

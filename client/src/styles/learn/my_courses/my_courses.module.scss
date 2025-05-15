@@ -1,0 +1,16 @@
+@use "@/styles/scss/color.scss" as color;
+
+.my_courses {
+    margin: 2rem auto;
+    width: 80%;
+}
+
+.my_courses_content h1 {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--color-black);
+}
+
+.my_courses_content .filter_tabs{
+   width: fit-content;
+}

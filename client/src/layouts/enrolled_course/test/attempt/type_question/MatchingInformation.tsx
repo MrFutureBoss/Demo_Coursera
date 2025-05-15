@@ -6,16 +6,17 @@ import convertStringToArray from '@/utilities/convertStringToArray';
 interface MatchingInformationProps {
     test: Test;
     onAnswered?: () => void;
+    showAnswer?: boolean;
 }
-export default function MatchingInformation({test, onAnswered}: MatchingInformationProps) {
+export default function MatchingInformation({test, onAnswered, showAnswer}: MatchingInformationProps) {
     const options = convertStringToArray(test.options).map((item, index) => ({
         id: (index + 1).toString(),
-        label: item
+        label: item,
       }));
       
       const answers = convertStringToArray(test.answers).map((item, index) => ({
         id: (index + 1).toString(),
-        label: item
+        label: item,
       }));
     
     return (

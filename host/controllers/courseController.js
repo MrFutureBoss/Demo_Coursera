@@ -1,9 +1,5 @@
 import { getAllCourses, getCourseById, createCourse, updateCourse, deleteCourse } from '../repositories/courseRepository.js';
 
-/**
- * Lấy danh sách tất cả các khoá học (có phân trang)
- * Query params: ?offset=0&limit=8
- */
 export const getAllCoursesController = async (req, res) => {
   try {
     const offset = parseInt(req.query.offset) || 0;

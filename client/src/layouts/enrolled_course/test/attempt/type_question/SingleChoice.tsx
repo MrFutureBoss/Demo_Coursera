@@ -6,10 +6,11 @@ import convertStringToArray from "@/utilities/convertStringToArray";
 import convertNumberToAlphabet from "@/utilities/convertNumberToAlphabet";
 interface SingleChoiceProps {
     test: Test;
-    onAnswered?: () => void;
+    onAnswered?: (answer: string) => void;
+    showAnswer?: boolean;
 }
 
-export default function SingleChoice({ test, onAnswered }: SingleChoiceProps) {
+export default function SingleChoice({ test, onAnswered, showAnswer }: SingleChoiceProps) {
   const options = convertStringToArray(test.options);
   const [selected, setSelected] = React.useState<string | null>(null);
   return (
@@ -21,7 +22,7 @@ export default function SingleChoice({ test, onAnswered }: SingleChoiceProps) {
             value={selected}
             onChange={(e) => {
               setSelected(e.target.value);
-              if (onAnswered) onAnswered();
+              if (onAnswered) onAnswered(e.target.value);
             }}
           >
             {options.map((opt, idx) => (
@@ -34,6 +35,7 @@ export default function SingleChoice({ test, onAnswered }: SingleChoiceProps) {
                 }}
                 value={opt}
                 key={idx}
+                disabled={showAnswer}
               >
                 <b>{convertNumberToAlphabet(idx)}.</b> {opt}
               </Radio>
@@ -43,6 +45,11 @@ export default function SingleChoice({ test, onAnswered }: SingleChoiceProps) {
           <p>No other choice!</p>
         )}
       </div>
+       {showAnswer && (
+        <div className={styles.card_test_box}>
+          <p>Answer: {convertNumberToAlphabet(parseInt(test.answers))}</p>
+        </div>
+       )}
     </div>
   );
 }

@@ -176,3 +176,7 @@ pre, code, textarea {
   white-space: pre-wrap;
   word-wrap: break-word;
 }
+
+p{
+  margin-bottom: 0 !important;
+}

@@ -9,20 +9,20 @@ import type { Test } from "@/store/interface/tests";
 import TestContent from "@/layouts/enrolled_course/test/attempt/TestContent";
 import TrackingTest from "./TrackingTest";
 import { FaFlag } from "react-icons/fa";
-
-import TestResult from './TestResult';
+interface TakeTestProps {
+  test: Test;
+  e_course_quiz_id: number;
+  handleTimeUp: () => void;
+  handleFinishTest: () => void;
+}
 
 export default function TakeTest({
   test,
   e_course_quiz_id,
   handleTimeUp,
   handleFinishTest,
-}: {
-  test: Test;
-  e_course_quiz_id: number;
-  handleTimeUp: () => void;
-  handleFinishTest: () => void;
-}) {
+}: TakeTestProps) {
+  
   const dispatch = useDispatch<AppDispatch>();
   const tests = useSelector((state: RootState) => state.test.tests as Test[]);
   const [currentQuestion, setCurrentQuestion] = React.useState<number | null>(null);
@@ -41,6 +41,8 @@ export default function TakeTest({
     setCurrentQuestion(idx);
     document.getElementById(`question-${idx + 1}`)?.scrollIntoView({ behavior: "smooth" });
   };
+
+  const handleFinish = handleFinishTest;
 
   return (
     <>
@@ -72,7 +74,7 @@ export default function TakeTest({
             answered={answered}
             handleClickViewQuestion={handleClickViewQuestion}
             onTimeUp={handleTimeUp}
-            onFinishTest={handleFinishTest}
+            onFinishTest={handleFinish}
           />
         </div>
       </div>

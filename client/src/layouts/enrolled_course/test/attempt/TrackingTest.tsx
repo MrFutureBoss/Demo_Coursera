@@ -12,7 +12,7 @@ interface TrackingTestProps {
   setCurrentQuestion: (idx: number | null) => void;
   answered: boolean[];
   handleClickViewQuestion: (idx: number) => void;
-  onTimeUp: () => void;
+  onTimeUp: () => void | null;
   onFinishTest: () => void;
 }
 
@@ -23,8 +23,8 @@ export default function TrackingTest({
   setCurrentQuestion,
   answered,
   handleClickViewQuestion,
-  onTimeUp,
-  onFinishTest
+  onFinishTest,
+  onTimeUp
 }: TrackingTestProps) {
   const [finishSoon, setFinishSoon] = React.useState<boolean>(false);
   const onChange: CheckboxProps['onChange'] = (e) => {

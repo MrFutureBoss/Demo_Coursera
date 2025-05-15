@@ -14,9 +14,9 @@ import TestHeader from '@/layouts/enrolled_course/test/attempt/TestHeader';
 import ConfirmModal from '@/components/modals/ConfirmModal';
 import styles from '@/styles/learn/attempts/header.module.scss';
 import TakeTest from '@/layouts/enrolled_course/test/attempt/TakeTest';
-import TestResult from '@/layouts/enrolled_course/test/attempt/TestResult';
 import { useRouter } from 'next/navigation';
 import { urlToHyphenated } from '@/utilities/urlToHyphenated';
+import TestResult from '@/layouts/enrolled_course/test/attempt/result/TestResult';
 
 interface TestAttemptPageProps {
     params: { courseName: string, lesson_name: string, test_name: string } | Promise<{ id: string; courseName: string, lesson_name: string, test_name: string }>;
@@ -99,11 +99,12 @@ export default function TestAttemptPage({ params }: TestAttemptPageProps) {
         setIsFinished(true);
       }, []);
 
+
     return (
       <>
         <div className={styles.test_attempt }>
             <TestHeader course={course} lesson={lesson} test={test} onBack={handleBack} isFinished={isFinished}/>
-            {isFinished ? <TestResult test={test} /> : <TakeTest 
+            {isFinished ? <TestResult e_course_quiz_id={Number(getIdFromURL(test_name))} /> : <TakeTest 
               test={test} 
               e_course_quiz_id={Number(getIdFromURL(test_name))}
               handleTimeUp={handleTimeUp}

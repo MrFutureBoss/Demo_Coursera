@@ -1,7 +1,6 @@
 import React from "react";
 import styles from "@/styles/staff_home_styles/staff_home_continue_learning.module.scss";
 import { Button, Col, Row } from "antd";
-import Image from "next/image";
 import Link from "next/link";
 
 export default function ContinueLearning() {
@@ -17,7 +16,7 @@ export default function ContinueLearning() {
             View all learning
           </Link>
         </div>
-        <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
+        <Row gutter={[16, 16]}>
           <Col lg={15} md={24} className={styles.box}>
             <Row>
               <Col lg={4}>
@@ -30,7 +29,7 @@ export default function ContinueLearning() {
                 </div>
               </Col>
               <Col
-                lg={11}
+                lg={9}
                 style={{
                   display: "flex",
                   justifyContent: "start",
@@ -52,7 +51,7 @@ export default function ContinueLearning() {
                 </div>
               </Col>
               <Col
-                lg={9}
+                lg={10}
                 md={24}
                 style={{
                   display: "flex",
@@ -63,16 +62,16 @@ export default function ContinueLearning() {
                 <div className={styles.get_start_box}>
                   <Row>
                     <Col lg={14}>
-                      <div>
-                        <p className="font-bold">Project Overview</p>
-                        <p className="text-gray-500">Reading: 10%</p>
+                      <div className="h-full w-full flex justify-center items-center">
+                        <div>
+                          <p className="font-bold">Project Overview</p>
+                          <p className="text-gray-500">Reading: 10%</p>
+                        </div>
                       </div>
                     </Col>
                     <Col lg={10}>
-                      <div className="flex justify-center items-center">
-                        <Button type="primary">
-                          Get started
-                        </Button>
+                      <div className="h-full w-full flex justify-center items-center">
+                        <Button type="primary">Get started</Button>
                       </div>
                     </Col>
                   </Row>
@@ -80,8 +79,7 @@ export default function ContinueLearning() {
               </Col>
             </Row>
           </Col>
-          <Col lg={1}></Col>
-          <Col lg={8} md={24} className={styles.tracking_progess_box}>
+          <Col lg={9} md={24} className={styles.tracking_progess_box}>
             <div className="flex flex-col gap-1.5">
               <p className="font-bold">Weekly goal progress tracker</p>
               <p>
@@ -89,7 +87,9 @@ export default function ContinueLearning() {
                 courses. Set a weekly goal now to take charge of your learning
                 journey and boost your success!
               </p>
-              <Button className="w-fit" color="primary" variant="outlined">Set your weekly goal</Button>
+              <Button className="w-fit" color="primary" variant="outlined">
+                Set your weekly goal
+              </Button>
             </div>
           </Col>
         </Row>

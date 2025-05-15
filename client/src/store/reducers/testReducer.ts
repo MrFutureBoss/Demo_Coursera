@@ -1,7 +1,9 @@
 import api from "@/utilities/api";
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { isAxiosError } from "axios";
-import { Test, TestsState } from "@/store/interface/tests";
+import { Test, TestResult, TestsState } from "@/store/interface/tests";
+import { persistReducer } from 'redux-persist';
+import testPersistConfig from '../persistConfig';
 
 export const get_test_by_course_quiz_id = createAsyncThunk(
     'tests/get_test_by_course_quiz_id',
@@ -53,22 +55,8 @@ export const get_test_infor_by_course_quiz_id = createAsyncThunk(
 
 export const get_test_result_by_props = createAsyncThunk(
     'tests/get_test_result_by_props',
-    async (
-        info: { id: number | string } = { id: 0 },
-        { rejectWithValue, fulfillWithValue }
-    ) => {
-        try {
-            return fulfillWithValue({});
-        } catch (error: unknown) {
-    if (isAxiosError(error)) {
-        return rejectWithValue(error.response?.data ?? error.message);
-    }
-    if (error instanceof Error) {
-        return rejectWithValue(error.message);
-    }
-    return rejectWithValue(String(error));
-
-        }
+    async (data: TestResult, { fulfillWithValue }) => {
+        return fulfillWithValue(data);
     }
 );
 
@@ -121,7 +109,7 @@ const testsSlice = createSlice({
             .addCase(get_test_result_by_props.pending, (state) => {
                 state.loading = true;
             })
-            .addCase(get_test_result_by_props.fulfilled, (state, action: PayloadAction<Test>) => {
+            .addCase(get_test_result_by_props.fulfilled, (state, action: PayloadAction<TestResult>) => {
                 state.loading = false;
                 state.test_result = action.payload;
             })
@@ -133,4 +121,7 @@ const testsSlice = createSlice({
 });
 
 export const { testsReset } = testsSlice.actions;
-export default testsSlice.reducer;
+
+export const persistedTestReducer = persistReducer(testPersistConfig, testsSlice.reducer);
+export default persistedTestReducer;
+

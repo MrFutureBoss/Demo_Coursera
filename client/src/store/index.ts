@@ -1,17 +1,25 @@
 import { configureStore } from '@reduxjs/toolkit';
-import rootReducer from './rootReducer';
-import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
+import { persistStore, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
+import { persistedTestReducer } from './reducers/testReducer';
+import courseReducer from './reducers/courseReducer';
+import lessonReducer from './reducers/lessonReducer';
+import materialReducer from './reducers/materialReducer';
+import sectionReducer from './reducers/sectionReducer';
+import authenReducer from './reducers/authenReducer';
+import classesReducer from './reducers/classesReducer';
 
-const persistConfig = {
-  key: 'root',
-  storage,
+const combinedReducer = {
+  course: courseReducer,
+  lesson: lessonReducer,
+  material: materialReducer,
+  section: sectionReducer,
+  test: persistedTestReducer,
+  classes: classesReducer,
+  authen: authenReducer,
 };
 
-const persistedReducer = persistReducer(persistConfig, rootReducer);
-
 const store = configureStore({
-  reducer: persistedReducer,
+  reducer: combinedReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {

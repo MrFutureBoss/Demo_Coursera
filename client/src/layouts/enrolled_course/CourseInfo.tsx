@@ -19,11 +19,6 @@ export default function CourseInfo({
             <Image
               src={banner}
               alt={title}
-              // style={{
-              //   width: "16rem",
-              //   objectFit: "cover",
-              //   borderRadius: "10px",
-              // }}
             />
           </div>
         ) : (

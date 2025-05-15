@@ -12,7 +12,7 @@ export const get_all_courses = createAsyncThunk(
     try {
       const params = { offset: info.offset, limit: info.limit };
       const { data } = await api.get(`/courses`, { params });
-      console.log("Redux: ",data.data);
+      // console.log("Redux: ",data.data);
       return fulfillWithValue(data.data);
     } catch (error: unknown) {
   if (isAxiosError(error)) {
@@ -36,7 +36,7 @@ export const get_course_by_id = createAsyncThunk(
     try {
       const params = { id: info.id };
       const { data } = await api.get(`/courses/${info.id}`, { params });
-      console.log("Redux: ",data.data);
+      // console.log("Redux: ",data.data);
       return fulfillWithValue(data.data);
     } catch (error: unknown) {
   if (isAxiosError(error)) {
