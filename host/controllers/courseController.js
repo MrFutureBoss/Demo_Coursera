@@ -1,4 +1,4 @@
-import { getAllCourses, getCourseById, createCourse, updateCourse, deleteCourse } from '../repositories/courseRepository.js';
+import { getAllCourses, getCourseById, createCourse, updateCourse, deleteCourse, searchCourses } from '../repositories/courseRepository.js';
 
 export const getAllCoursesController = async (req, res) => {
   try {
@@ -79,3 +79,24 @@ export const deleteCourseController = async (req, res) => {
     res.status(500).json({ message: 'Failed to delete course', error: err.message, data: null, count: 0 });
   }
 };
+
+/**
+ * Tìm kiếm khoá học theo tên
+ */
+export const searchCoursesController = async (req, res) => {
+  try {
+    const { name } = req.query;
+    const { offset } = req.query;
+    const { limit } = req.query;
+
+    const courses = await searchCourses(name, offset, limit);
+    res.json({
+      message: 'Courses fetched successfully',
+      data: courses,
+      count: Array.isArray(courses) ? courses.length : 0
+    });
+  } catch (err) {
+    res.status(500).json({ message: 'Failed to fetch courses', error: err.message, data: null, count: 0 });
+  }
+};
+

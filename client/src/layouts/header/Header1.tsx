@@ -79,7 +79,7 @@ export default function Header1() {
 
   // Desktop version: original layout
   return (
-    <Row className={header1.staff_header1} align="middle">
+    <Row className={header1.staff_header1}>
       <Col sm={4} className={header1.col1}>
         <Logo className={common.home_logo} />
       </Col>

@@ -16,10 +16,18 @@ export interface Course {
   updated_by: number;
   certificate: number;
 }
-  
-  export interface CoursesState {
+
+export interface SearchCourse {
+  id: number;
+  banner: string;
+  topic_name: string;
+}
+
+export interface CoursesState {
   courses: Course[];
   loading: boolean;
   error: string | null;
   course: Course | null;
+  searchCourses: SearchCourse[];
+  founds: number;
 }

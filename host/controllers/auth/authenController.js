@@ -1,4 +1,4 @@
-import { getLoginDAO, findUserByEmail } from "../../repositories/auth/authenDAO.js";
+import { getLoginDAO, findUserByEmail, findUserById } from "../../repositories/auth/authenDAO.js";
 
 export const getLoginController = async (req, res) => {
     try {
@@ -41,6 +41,16 @@ export const logoutController = async (req, res) => {
       message: "Logged out successfully.",
       tokenStillExists,
     });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+export const profileController = async (req, res) => {
+  try {
+    const userId = req.params.userId;
+    const user = await findUserById(userId);
+    res.status(200).json({ user });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

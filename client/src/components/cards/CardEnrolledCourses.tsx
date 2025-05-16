@@ -51,7 +51,7 @@ const CardEnrolledCourses: React.FC<CardEnrolledCoursesProps> = ({
           actions={[
             <span
               className="h-full w-full flex items-center justify-center"
-              key="ellipsis"
+              key="participants"
             >
               <CustomTooltip
                 title={`This is course have ${countParticipant(
@@ -69,7 +69,7 @@ const CardEnrolledCourses: React.FC<CardEnrolledCoursesProps> = ({
             </span>,
             <span
               className="h-full w-full flex items-center justify-center"
-              key="ellipsis"
+              key="lessons"
             >
               <CustomTooltip
                 title={`This is course have ${countParticipant(
@@ -91,7 +91,7 @@ const CardEnrolledCourses: React.FC<CardEnrolledCoursesProps> = ({
             </span>,
             <span
               className="h-full w-full flex items-center justify-center"
-              key="ellipsis"
+              key="duration"
             >
               <CustomTooltip
                 title={`This is course have ${formatTime(

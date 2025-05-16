@@ -9,46 +9,36 @@ import { RootState } from "@/store/rootReducer";
 import type { Class } from "@/store/interface/classes";
 import { useDispatch } from "react-redux";
 import type { AppDispatch } from "@/store/index";
-import {
-  countAllClasses,
-  getAllClasses,
-} from "@/store/reducers/classesReducer";
+import { countAllClasses, getAllClasses } from "@/store/reducers/classesReducer";
 import CustomPagination from "@/components/paginations/CustomPagination";
+import RadioCardAndList from "@/components/radios/RadioCardAndList";
+import EnrolledCourseList from "@/components/lists/EnrolledCourseList";
+
 export default function MyCourses() {
-  const classes = useSelector(
-    (state: RootState) => state.classes.classesForParticipant
-  );
+  const classes = useSelector((state: RootState) => state.classes.classesForParticipant);
   const count = useSelector((state: RootState) => state.classes.count);
-  console.log("count in MyCourses:", count);
   const loading = useSelector((state: RootState) => state.classes.loading);
-  const error = useSelector((state: RootState) => state.classes.error);
+  // const error = useSelector((state: RootState) => state.classes.error);
   const dispatch = useDispatch<AppDispatch>();
   const [filter, setFilter] = React.useState("In Progress");
   const [limit, setLimit] = React.useState(4);
   const [pageNumber, setPageNumber] = React.useState(1);
+  const [view, setView] = React.useState("card");
 
   React.useEffect(() => {
     dispatch(countAllClasses({ userId: 1, filter: filter }));
-    dispatch(
-      getAllClasses({ userId: 1, filter: filter, offset: 0, limit: limit })
-    );
+    dispatch(getAllClasses({ userId: 1, filter: filter, offset: 0, limit: limit }));
   }, [dispatch, filter, limit]);
-
-  console.log("classes in MyCourses:", JSON.stringify(classes));
 
   const handleFilter = (data: string) => {
     setFilter(data);
-    dispatch(
-      getAllClasses({ userId: 1, filter: data, offset: 0, limit: limit })
-    );
+    dispatch(getAllClasses({ userId: 1, filter: data, offset: 0, limit: limit }));
   };
 
   const items: TabsProps["items"] = [
     {
       key: "1",
-      label: (
-        <span onClick={() => handleFilter("In Progress")}>In Progress</span>
-      ),
+      label: <span onClick={() => handleFilter("In Progress")}>In Progress</span>,
       children: <div>There are {count} still in progress courses</div>,
     },
     {
@@ -77,9 +67,7 @@ export default function MyCourses() {
 
   const handlePageSizeChange = (pageSize: number) => {
     setLimit(pageSize);
-    dispatch(
-      getAllClasses({ userId: 1, filter: filter, offset: 0, limit: pageSize })
-    );
+    dispatch(getAllClasses({ userId: 1, filter: filter, offset: 0, limit: pageSize }));
   };
 
   return (
@@ -101,34 +89,38 @@ export default function MyCourses() {
       </Col>
       <Col lg={12} md={24} sm={24}>
         <div>
-          <div>
+          <RadioCardAndList value={view} onChange={(e) => setView(e.target.value)} />
+          <div style={{ marginTop: "2rem" }}>
             {loading ? (
               <Row gutter={[32, 16]}>
-                {[...Array(limit)].map((_, idx) => (
-                  <Col xl={6} lg={6} md={12} key={idx}>
-                    <CardEnrolledCourses
-                      classItem={{} as Class}
-                      loading={true}
-                    />
-                  </Col>
-                ))}
+                {view === "card"
+                  ? [...Array(limit)].map((_, idx) => (
+                      <Col xl={6} lg={6} md={12} key={idx}>
+                        <CardEnrolledCourses classItem={{} as Class} loading={true} />
+                      </Col>
+                    ))
+                  : [...Array(limit)].map((_, idx) => (
+                      <Col xl={6} lg={6} md={12} key={idx}>
+                        <EnrolledCourseList classes={[{} as Class]} loading={true} />
+                      </Col>
+                    ))}
               </Row>
-            ) : null}
-            {error && <div style={{ color: "red" }}>{String(error)}</div>}
-
-            {!loading && (
+            ) : (
               <Row gutter={[16, 16]}>
-                {classes.map((classItem: Class, idx: number) => (
-                  <Col lg={12} md={12} key={idx}>
-                    <CardEnrolledCourses
-                      classItem={classItem}
-                      loading={false}
-                    />
-                  </Col>
-                ))}
+                {view === "card"
+                  ? classes.map((classItem: Class, idx: number) => (
+                      <Col lg={12} md={12} key={idx}>
+                        <CardEnrolledCourses classItem={classItem} loading={false} />
+                      </Col>
+                    ))
+                  : 
+                      <Col span={24}>
+                        <EnrolledCourseList classes={classes} loading={false} />
+                      </Col>
+                    }
               </Row>
             )}
-            {error && <div style={{ color: "red" }}>{String(error)}</div>}
+            {/* {error && <div style={{ color: "red" }}>{String(error)}</div>} */}
           </div>
         </div>
       </Col>

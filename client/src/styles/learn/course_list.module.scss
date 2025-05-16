@@ -1,0 +1,12 @@
+.course_list_item {
+    background-color: #E6F4FF;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.course_list_item:hover {
+    background-color: #C6E4FF;
+    padding: 1rem;
+    cursor: pointer;
+}

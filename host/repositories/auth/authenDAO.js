@@ -34,8 +34,20 @@ export const getLoginDAO = async ({ email, password }) => {
 export const findUserByEmail = async (email) => {
   try {
     const [users] = await db.query(
-      `SELECT u.id, u.email, r.name as role, password FROM elearning.users u LEFT JOIN elearning.roles r ON r.id  = u.role_id WHERE u.email = ?`,
+      `SELECT u.id, u.email, r.name as role, password FROM users u LEFT JOIN roles r ON r.id  = u.role_id WHERE u.email = ?`,
       [email]
+    );
+    return users;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
+export const findUserById = async (id) => {
+  try {
+    const [users] = await db.query(
+      `SELECT u.id, u.email, r.name as role, u.username, u.phone FROM users u LEFT JOIN roles r ON r.id  = u.role_id WHERE u.id = ?`,
+      [id]
     );
     return users;
   } catch (error) {

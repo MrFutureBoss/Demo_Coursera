@@ -1,97 +1,71 @@
 import React, { useEffect, useState } from "react";
-import { Avatar, Button, List, Skeleton } from "antd";
+import { Avatar, List, Skeleton } from "antd";
+import { SearchCourse } from "@/store/interface/courses";
 
-interface DataType {
-  gender?: string;
-  name?: string;
-  email?: string;
-  avatar?: string;
+interface SearchResultProps {
+  search_results: SearchCourse[];
   loading: boolean;
 }
 
-const PAGE_SIZE = 3;
-
-export default function SearchResult() {
-  const [initLoading, setInitLoading] = useState(true);
-  const [loading, setLoading] = useState(false);
-  const [data, setData] = useState<DataType[]>([]);
-  const [list, setList] = useState<DataType[]>([]);
-  const [page, setPage] = useState(1);
-
-  const fetchData = (currentPage: number) => {
-    const fakeDataUrl = `https://660d2bd96ddfa2943b33731c.mockapi.io/api/users?page=${currentPage}&limit=${PAGE_SIZE}`;
-    return fetch(fakeDataUrl).then((res) => res.json());
-  };
+export default function SearchResult({ search_results, loading }: SearchResultProps) {
+  const [list, setList] = useState<SearchCourse[]>([]);
 
   useEffect(() => {
-    fetchData(page).then((res) => {
-      const results = Array.isArray(res) ? res : [];
-      setInitLoading(false);
-      setData(results);
-      setList(results);
-    });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    setList(search_results.map((item) => ({ ...item, loading: false })));
+    setList(search_results.map((item) => ({ ...item, loading: false })));
+  }, [search_results]);
 
-  const onLoadMore = () => {
-    setLoading(true);
-    setList(
-      data.concat(
-        Array.from({ length: PAGE_SIZE }).map(() => ({ loading: true }))
-      )
-    );
-    const nextPage = page + 1;
-    setPage(nextPage);
-    fetchData(nextPage).then((res) => {
-      const results = Array.isArray(res) ? res : [];
-      const newData = data.concat(results);
-      setData(newData);
-      setList(newData);
-      setLoading(false);
-      // Resetting window's offsetTop so as to display react-virtualized demo underfloor.
-      // In real scene, you can using public method of react-virtualized:
-      // https://stackoverflow.com/questions/46700726/how-to-use-public-method-updateposition-of-react-virtualized
-      window.dispatchEvent(new Event("resize"));
-    });
-  };
+  // const onLoadMore = () => {
+  //   setList(
+  //     data.concat(
+  //       Array.from({ length: PAGE_SIZE }).map(() => ({ loading: true } as unknown as SearchCourse))
+  //     )
+  //   );
+  //   const nextPage = page + 1;
+  //   setPage(nextPage);
+  //   const results = Array.isArray(search_results) ? search_results : [];
+  //   const newData = data.concat(results);
+  //   setData(newData);
+  //   setList(newData);
+  //   window.dispatchEvent(new Event("resize"));
+  // };
 
-  const loadMore =
-    !initLoading && !loading ? (
-      <div
-        style={{
-          textAlign: "center",
-          marginTop: 12,
-          height: 32,
-          lineHeight: "32px",
-        }}
-      >
-        <Button onClick={onLoadMore}>loading more</Button>
-      </div>
-    ) : null;
+  // const loadMore =
+  //   !loading ? (
+  //     <div
+  //       style={{
+  //         textAlign: "center",
+  //         marginTop: 12,
+  //         height: 32,
+  //         lineHeight: "32px",
+  //       }}
+  //     >
+  //       <Button onClick={onLoadMore}>loading more</Button>
+  //     </div>
+  //   ) : null;
 
   return (
     <div>
       <List
         className="demo-loadmore-list"
-        loading={initLoading}
+        loading={loading}
         itemLayout="horizontal"
-        loadMore={loadMore}
+        // loadMore={loadMore}
         dataSource={list}
-        style={{maxHeight: '50rem', height: '30rem', overflowY: 'auto'}}
-        renderItem={(item) => (
+        style={{maxHeight: '50rem', height: 'fit-content', overflowY: 'auto'}}
+        renderItem={(item: SearchCourse) => (
           <List.Item
             actions={[
               <a key="list-loadmore-edit">edit</a>,
               <a key="list-loadmore-more">more</a>,
             ]}
           >
-            <Skeleton avatar title={false} loading={item.loading} active>
+            <Skeleton avatar title={false} loading={loading} active>
               <List.Item.Meta
-                avatar={<Avatar src={item.avatar} />}
-                title={<a href="https://ant.design">{item.name}</a>}
-                description="Ant Design, a design language for background applications, is refined by Ant UED Team"
+                avatar={<Avatar src={item.banner} />}
+                title={<a href="https://ant.design">{item.topic_name}</a>}
+                description={<></>}
               />
-              <div>content</div>
             </Skeleton>
           </List.Item>
         )}

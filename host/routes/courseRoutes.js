@@ -4,11 +4,15 @@ import {
   getCourseByIdController,
   createCourseController,
   updateCourseController,
-  deleteCourseController
+  deleteCourseController,
+  searchCoursesController
 } from '../controllers/courseController.js';
+import { verifyAccessToken } from '../middlewares/authentication.js';
+
 const courseRouter = express.Router();
 
 courseRouter.get('/', getAllCoursesController);
+courseRouter.get('/search', verifyAccessToken, searchCoursesController);
 courseRouter.get('/:id', getCourseByIdController);
 courseRouter.post('/', createCourseController);
 courseRouter.put('/:id', updateCourseController);

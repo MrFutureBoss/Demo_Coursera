@@ -1,118 +1,129 @@
 /* eslint-disable react/no-children-prop */
 /* eslint-disable @next/next/no-img-element */
 import React from "react";
-import Link from "next/link";
-import { Badge, List, Space, Typography } from "antd";
-import styles from "@/styles/staff_home_styles/staff_home_most_enrolled.module.scss";
+import { List, Skeleton } from "antd";
 import type { Class } from "@/store/interface/classes";
-import { countParticipant } from "@/utilities/countParticipant";
+import styles from "@/styles/learn/course_list.module.scss";
 import StatusTag from "../tags/StatusTag";
 import { RxStarFilled } from "react-icons/rx";
-import { MdGroups } from "react-icons/md";
-import CustomTooltip from "../tooltips/CustomTooltip";
+import { MdGroups, MdOutlinePlayCircleFilled } from "react-icons/md";
+import { countParticipant } from "@/utilities/countParticipant";
 import { IoTime } from "react-icons/io5";
-import { MdOutlinePlayCircleFilled } from "react-icons/md";
 import formatTime from "@/utilities/formatTime";
-import Award from "../icons/Award";
+import { useRouter } from "next/navigation";
 import { urlToHyphenated } from "@/utilities/urlToHyphenated";
+import Link from "next/link";
 
-const { Text } = Typography;
-
-interface CardEnrolledCoursesProps {
-  classItem: Class;
+interface EnrolledCourseListProps {
+  classes: Class[];
   loading?: boolean;
 }
 
-const CardEnrolledCourses: React.FC<CardEnrolledCoursesProps> = ({
-  classItem,
+const EnrolledCourseList: React.FC<EnrolledCourseListProps> = ({
+  classes,
   loading = false,
 }) => {
-  const actions = [
-    <CustomTooltip
-      key="participants"
-      title={`This course has ${countParticipant(
-        classItem.participants
-      )} participants`}
-    >
-      <Space size="small">
-        <MdGroups size="1.4rem" color="#666666" />
-        <Text>{countParticipant(classItem.participants)}</Text>
-      </Space>
-    </CustomTooltip>,
-    <CustomTooltip
-      key="lessons"
-      title={`This course has ${countParticipant(
-        classItem.participants
-      )} lessons`}
-    >
-      <Space size="small">
-        <MdOutlinePlayCircleFilled size="1.2rem" color="#666666" />
-        <Text>{countParticipant(classItem.participants)}</Text>
-      </Space>
-    </CustomTooltip>,
-    <CustomTooltip
-      key="duration"
-      title={`This course takes ${formatTime(
-        classItem.duration,
-        "minutes"
-      )} minutes to complete`}
-    >
-      <Space size="small">
-        <IoTime size="1.2rem" color="#666666" />
-        <Text>{formatTime(classItem.duration, "minutes")} min</Text>
-      </Space>
-    </CustomTooltip>,
-  ];
-
+  const router = useRouter();
+  const handleClick = (item: Class) => {
+    router.push(
+      `/learn/${urlToHyphenated(item.topic_name || "")}-${
+        item.course_id
+      }/progress`
+    );
+  };
   return (
-    <List.Item
-      className={styles.listItem}
-      actions={actions}
-      extra={
-        !loading && classItem.banner ? (
-          <Badge.Ribbon text={`v${classItem.version}`}>
-            <img
-              alt={classItem.topic_name || ""}
-              src={classItem.banner || ""}
-              style={{ width: 280, height: 200, objectFit: "cover" }}
-            />
-          </Badge.Ribbon>
-        ) : null
-      }
-    >
-      <Link
-        href={`/learn/${urlToHyphenated(classItem.topic_name || "")}-${
-          classItem.course_id
-        }/progress`}
-        style={{ textDecoration: "none" }}
-      >
-        <List.Item.Meta
-          avatar={<Award size="1.8rem" color="gold" />}
-          title={
-            <CustomTooltip title={classItem.topic_name}>
-              <Text strong style={{ fontSize: "1.1rem" }}>
-                {classItem.topic_name}
-              </Text>
-            </CustomTooltip>
-          }
-          description={
-            <Space direction="vertical" size="small">
-              <StatusTag
-                color="blue"
-                content={<div className="flex items-center">{classItem.type}</div>}
-              />
-              <Space>
-                <Text>4.5</Text>
-                {[...Array(5)].map((_, i) => (
-                  <RxStarFilled key={i} className="text-yellow-400" />
-                ))}
-              </Space>
-            </Space>
-          }
-        />
-      </Link>
-    </List.Item>
+    <List
+      loading={loading}
+      itemLayout="horizontal"
+      dataSource={classes}
+      style={{ maxHeight: "25rem", overflowY: "auto" }}
+      renderItem={(item) => (
+        <List.Item
+          className={styles.course_list_item}
+          onClick={() => handleClick(item)}
+        >
+          <Skeleton avatar title={false} loading={loading} active>
+            <List.Item.Meta
+              avatar={
+                <img
+                  src={item.banner}
+                  alt="banner"
+                  style={{
+                    width: 100,
+                    height: 100,
+                    marginLeft: "1rem",
+                    borderRadius: "8px",
+                  }}
+                />
+              }
+              title={
+                <div>
+                  <div className="flex items-center">
+                    {item.topic_name}&nbsp;
+                    <StatusTag color="blue" content={`v.${item.version}`} />
+                  </div>
+                  <div className="flex items-center">
+                    <StatusTag
+                      color="blue"
+                      content={
+                        <div className="flex items-center">{item.type}</div>
+                      }
+                    />
+                    4.5&nbsp;
+                    <RxStarFilled className="text-yellow-400" />
+                    <RxStarFilled className="text-yellow-400" />
+                    <RxStarFilled className="text-yellow-400" />
+                    <RxStarFilled className="text-yellow-400" />
+                    <RxStarFilled className="text-yellow-400" />
+                  </div>
+                </div>
+              }
+              description={
+                <div className="flex items-center gap-1.5 w-full">
+                  <span className="flex items-center gap-1.5">
+                    <MdGroups size="1.4rem" color="#666666" />
+                    <p style={{ fontSize: "0.9rem" }}>
+                      {countParticipant(item.participants)}
+                    </p>
+                    participants
+                  </span>
+                  ,
+                  <span className="h-full w-fit">
+                    <span className="flex items-center gap-1.5">
+                      <MdOutlinePlayCircleFilled
+                        size="1.2rem"
+                        color="#666666"
+                      />
+                      <p style={{ fontSize: "0.9rem" }}>
+                        {countParticipant(item.participants)}{" "}
+                      </p>
+                      lesson
+                    </span>
+                  </span>
+                  ,
+                  <span className="h-full w-full">
+                    <span className="flex items-center gap-1.5">
+                      <IoTime size="1.2rem" color="#666666" />
+                      <p style={{ fontSize: "0.9rem" }}>
+                        {formatTime(item.duration, "minutes")}
+                      </p>
+                      mins
+                    </span>
+                  </span>
+                </div>
+              }
+            >
+              <Link
+                href={`/learn/${urlToHyphenated(item.topic_name || "")}-${
+                  item.course_id
+                }/progress`}
+              ></Link>
+            </List.Item.Meta>
+          </Skeleton>
+        </List.Item>
+      )}
+    />
   );
 };
 
-export default CardEnrolledCourses;
+export default EnrolledCourseList;
