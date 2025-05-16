@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Avatar, List, Skeleton } from "antd";
 import { SearchCourse } from "@/store/interface/courses";
-
+import styles from "@/styles/search/search_tool.module.scss";
 interface SearchResultProps {
   search_results: SearchCourse[];
   loading: boolean;
@@ -56,9 +56,9 @@ export default function SearchResult({ search_results, loading }: SearchResultPr
         renderItem={(item: SearchCourse) => (
           <List.Item
             actions={[
-              <a key="list-loadmore-edit">edit</a>,
-              <a key="list-loadmore-more">more</a>,
+              <a key="list-loadmore-edit">Not enrolled</a>,
             ]}
+            className={styles.search_found}
           >
             <Skeleton avatar title={false} loading={loading} active>
               <List.Item.Meta

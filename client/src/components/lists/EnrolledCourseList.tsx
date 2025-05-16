@@ -7,11 +7,11 @@ import styles from "@/styles/learn/course_list.module.scss";
 import StatusTag from "../tags/StatusTag";
 import { RxStarFilled } from "react-icons/rx";
 import { MdGroups, MdOutlinePlayCircleFilled } from "react-icons/md";
-import { countParticipant } from "@/utilities/countParticipant";
+import { countParticipant } from "@/utilities/count/countParticipant";
 import { IoTime } from "react-icons/io5";
-import formatTime from "@/utilities/formatTime";
+import formatTime from "@/utilities/format/formatTime";
 import { useRouter } from "next/navigation";
-import { urlToHyphenated } from "@/utilities/urlToHyphenated";
+import { urlToHyphenated } from "@/utilities/url/urlToHyphenated";
 import Link from "next/link";
 
 interface EnrolledCourseListProps {

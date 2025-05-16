@@ -2,21 +2,21 @@ import React from "react";
 import { IoMdArrowBack } from "react-icons/io";
 import styles from "@/styles/learn/attempts/header.module.scss";
 import type { Test } from "@/store/interface/tests";
-import formatTime from "@/utilities/formatTime";
+import formatTime from "@/utilities/format/formatTime";
 
 import { RootState } from "@/store/rootReducer";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
 import { Course } from "@/store/interface/courses";
 import { Lesson } from "@/store/interface/lessons";
-import { urlToHyphenated } from "@/utilities/urlToHyphenated";
+import { urlToHyphenated } from "@/utilities/url/urlToHyphenated";
 
 export default function TestHeader({
   course,
   lesson,
   test,
   onBack,
-  isFinished
+  isFinished,
 }: {
   course: Course;
   lesson: Lesson;
@@ -24,20 +24,20 @@ export default function TestHeader({
   onBack?: () => void;
   isFinished?: boolean;
 }) {
-
   const router = useRouter();
 
   const handleBack = () => {
     if (!isFinished) {
-      if (typeof onBack === 'function') onBack();
+      if (typeof onBack === "function") onBack();
       return;
-    }
-    else {
-      router.push(`/learn/${course.id}/lesson/${urlToHyphenated(lesson.name)}-${lesson.id}/test/${urlToHyphenated(test.name)}-${test.id}`); 
-
+    } else {
+      router.push(
+        `/learn/${course.id}/lesson/${urlToHyphenated(lesson.name)}-${
+          lesson.id
+        }/test/${urlToHyphenated(test.name)}-${test.id}`
+      );
     }
   };
-
 
   const count = useSelector((state: RootState) => state.test.count);
   return (
@@ -49,10 +49,10 @@ export default function TestHeader({
       <div className={styles.test_info}>
         <p>{test?.name}</p>
         <p>
-         {count} questions&nbsp;•&nbsp; {formatTime(test?.time, "minutes")} mins
+          {count} questions&nbsp;•&nbsp; {formatTime(test?.time, "minutes")}{" "}
+          mins
         </p>
       </div>
-
     </div>
   );
 }

@@ -2,7 +2,7 @@ import React from "react";
 import type { Test } from "@/store/interface/tests";
 import { Button } from "antd";
 import { useRouter } from "next/navigation";
-import { urlToHyphenated } from "@/utilities/urlToHyphenated";
+import { urlToHyphenated } from "@/utilities/url/urlToHyphenated";
 import styles from "@/styles/learn/test_info.module.scss";
 
 export default function TestInfo({ test }: { test: Test }) {

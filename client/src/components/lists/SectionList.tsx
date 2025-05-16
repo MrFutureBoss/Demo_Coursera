@@ -19,11 +19,11 @@ const panelStyle: React.CSSProperties = {
   background: "#fff",
 };
 
-interface LessonListProps {
+interface SectionListProps {
   courseId: number;
 }
 
-export default function LessonList({ courseId }: LessonListProps) {
+export default function SectionList({ courseId }: SectionListProps) {
   const dispatch = useDispatch<AppDispatch>();
   const lessons = useSelector(
     (state: RootState) => state.lesson.lessons as Lesson[]

@@ -2,8 +2,8 @@ import React from "react";
 import type { Test } from "@/store/interface/tests";
 import { Radio } from "antd";
 import styles from "@/styles/learn/card_test.module.scss";
-import convertStringToArray from "@/utilities/convertStringToArray";
-import convertNumberToAlphabet from "@/utilities/convertNumberToAlphabet";
+import convertStringToArray from "@/utilities/convert/convertStringToArray";
+import convertNumberToAlphabet from "@/utilities/convert/convertNumberToAlphabet";
 interface SingleChoiceProps {
     test: Test;
     onAnswered?: (answer: string) => void;

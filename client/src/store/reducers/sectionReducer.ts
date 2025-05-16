@@ -13,7 +13,6 @@ export const get_section_by_section_id = createAsyncThunk(
       const params = { id: info.id };
       const { data } = await api.get(`/sections/${info.id}/`, { params });
       console.log("Redux section by section id: ", data.data);
-      // If backend returns an array, pick first item; else just return data.data
       return fulfillWithValue(Array.isArray(data.data) ? data.data[0] : data.data);
     } catch (error: unknown) {
       if (isAxiosError(error)) {

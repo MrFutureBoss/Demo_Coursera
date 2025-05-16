@@ -27,8 +27,8 @@ export default function CourseInfo({
           </div>
         )}
       </div>
-      <div className="flex p-3">
-        <div className="leading-[1.2rem]">
+      <div className="flex p-3 justify-center">
+        <div className="leading-[1.2rem] w-fit">
           <p className="text-2xl font-bold">{title}</p>
           <p className="text-gray-500">{overview}</p>
         </div>

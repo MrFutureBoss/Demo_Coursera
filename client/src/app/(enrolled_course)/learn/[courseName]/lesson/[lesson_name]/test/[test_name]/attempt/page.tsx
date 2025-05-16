@@ -7,7 +7,7 @@ import { RootState } from '@/store/rootReducer';
 import { get_course_by_id } from '@/store/reducers/courseReducer';
 import { get_lesson_by_lesson_id } from '@/store/reducers/lessonReducer';
 import { Lesson } from '@/store/interface/lessons';
-import { getIdFromURL } from '@/utilities/getIdFromURL';
+import { getIdFromURL } from '@/utilities/url/getIdFromURL';
 import { get_test_infor_by_course_quiz_id } from '@/store/reducers/testReducer';
 import { Test } from '@/store/interface/tests';
 import TestHeader from '@/layouts/enrolled_course/test/attempt/TestHeader';
@@ -15,7 +15,7 @@ import ConfirmModal from '@/components/modals/ConfirmModal';
 import styles from '@/styles/learn/attempts/header.module.scss';
 import TakeTest from '@/layouts/enrolled_course/test/attempt/TakeTest';
 import { useRouter } from 'next/navigation';
-import { urlToHyphenated } from '@/utilities/urlToHyphenated';
+import { urlToHyphenated } from '@/utilities/url/urlToHyphenated';
 import TestResult from '@/layouts/enrolled_course/test/attempt/result/TestResult';
 
 interface TestAttemptPageProps {

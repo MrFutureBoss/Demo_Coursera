@@ -1,4 +1,4 @@
-import type { Section } from "@/store/interface/materials";
+import type { Section } from "@/store/interface/sections";
 
 const countTotalTimeCompleteLession = (sections: Section[]) => {
     const time = sections.reduce((acc, section) => {

@@ -6,7 +6,7 @@ import React, { useEffect, use } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import type { AppDispatch } from '@/store/index';
 import type { Course } from '@/store/interface/courses';
-import { getIdFromURL } from '@/utilities/getIdFromURL';
+import { getIdFromURL } from '@/utilities/url/getIdFromURL';
 
 interface LearnDetailPageProps {
   params: { name: string } | Promise<{ name: string }>;

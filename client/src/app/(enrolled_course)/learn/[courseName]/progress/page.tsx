@@ -6,7 +6,7 @@ import type { Course } from '@/store/interface/courses';
 import { RootState } from '@/store/rootReducer';
 import { get_course_by_id } from '@/store/reducers/courseReducer';
 import LearnHome from '@/layouts/enrolled_course/LearnHome';
-import { getIdFromURL } from '@/utilities/getIdFromURL';
+import { getIdFromURL } from '@/utilities/url/getIdFromURL';
 interface ProgressPageProps {
     params: { courseName: string } | Promise<{ courseName: string }>;
 }

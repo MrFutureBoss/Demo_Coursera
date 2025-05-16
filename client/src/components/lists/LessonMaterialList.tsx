@@ -3,9 +3,9 @@ import React from "react";
 import { Button } from "antd";
 import styles from "@/styles/learn/learn.module.scss";
 import { Material } from "@/store/interface/materials";
-import { showLess } from "@/utilities/showLess";
+import { showLess } from "@/utilities/format/showLess";
 import LearningIcon from "../icons/LearningIcon";
-import { urlToHyphenated } from "@/utilities/urlToHyphenated";
+import { urlToHyphenated } from "@/utilities/url/urlToHyphenated";
 import { useRouter } from "next/navigation";
 
 interface LessonMaterialListProps {

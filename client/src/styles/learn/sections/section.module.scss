@@ -1,0 +1,22 @@
+@use "@/styles/scss/color.scss" as color;
+@use "@/styles/scss/font.scss" as font;
+
+.hide_menu {
+  padding: 0.5rem 1rem;
+  color: color.$color-text-blue;
+  cursor: pointer;
+  width: fit-content;
+  font-weight: font.$font-weight-title;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  line-height: 1.2;
+}
+
+.hide_menu:hover {
+  background-color: color.$color-hover-blue;
+}
+
+.hide_menu p:nth-child(2):hover {
+  text-decoration: underline;
+}

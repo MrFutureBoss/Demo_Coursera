@@ -5,16 +5,16 @@ import Link from "next/link";
 import { Badge, Card } from "antd";
 import styles from "@/styles/staff_home_styles/staff_home_most_enrolled.module.scss";
 import type { Class } from "@/store/interface/classes";
-import { countParticipant } from "@/utilities/countParticipant";
+import { countParticipant } from "@/utilities/count/countParticipant";
 import StatusTag from "../tags/StatusTag";
 import { RxStarFilled } from "react-icons/rx";
 import { MdGroups } from "react-icons/md";
 import CustomTooltip from "../tooltips/CustomTooltip";
 import { IoTime } from "react-icons/io5";
 import { MdOutlinePlayCircleFilled } from "react-icons/md";
-import formatTime from "@/utilities/formatTime";
+import formatTime from "@/utilities/format/formatTime";
 import Award from "../icons/Award";
-import { urlToHyphenated } from "@/utilities/urlToHyphenated";
+import { urlToHyphenated } from "@/utilities/url/urlToHyphenated";
 
 interface CardEnrolledCoursesProps {
   classItem: Class;

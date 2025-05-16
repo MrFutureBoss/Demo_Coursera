@@ -7,9 +7,9 @@ import styles from "@/styles/staff_home_styles/staff_home_most_enrolled.module.s
 import CustomTooltip from "../tooltips/CustomTooltip";
 import Award from "../icons/Award";
 import type { Course } from "@/store/interface/courses";
-import { urlToHyphenated } from "@/utilities/urlToHyphenated";
-import renderHTML from "@/utilities/renderHTML";
-import { showLess } from "@/utilities/showLess";
+import { urlToHyphenated } from "@/utilities/url/urlToHyphenated";
+import renderHTML from "@/utilities/convert/renderHTML";
+import { showLess } from "@/utilities/format/showLess";
 
 interface CardProductsProps {
   course: Partial<Course>;

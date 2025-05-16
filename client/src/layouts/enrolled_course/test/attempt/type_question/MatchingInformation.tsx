@@ -1,7 +1,7 @@
 import React from 'react'
 import type { Test } from '@/store/interface/tests';
 import DnDContainer from '@/components/drag&drop/match_information/DnDContainer';
-import convertStringToArray from '@/utilities/convertStringToArray';
+import convertStringToArray from '@/utilities/convert/convertStringToArray';
 
 interface MatchingInformationProps {
     test: Test;

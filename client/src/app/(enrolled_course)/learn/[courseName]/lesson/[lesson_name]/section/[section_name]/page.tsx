@@ -8,7 +8,7 @@ import { get_course_by_id } from '@/store/reducers/courseReducer';
 import LearningLesson from '@/layouts/enrolled_course/LearningLesson';
 import { get_lesson_by_lesson_id } from '@/store/reducers/lessonReducer';
 import { Lesson } from '@/store/interface/lessons';
-import { getIdFromURL } from '@/utilities/getIdFromURL';
+import { getIdFromURL } from '@/utilities/url/getIdFromURL';
 import { Section } from '@/store/interface/sections';
 import { get_section_by_section_id } from '@/store/reducers/sectionReducer';
 

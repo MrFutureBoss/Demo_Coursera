@@ -19,17 +19,17 @@ export default function ClientLayout({
 }) {
   useRoleGuard();
   const pathname = usePathname();
+  
   const showHeader1 =
     pathname === "/" ||
     (pathname || "").startsWith("/course") ||
-    (pathname || "").startsWith("/learn") ||
+    (pathname || "").startsWith("/learn") 
+    && !(pathname || "").endsWith("/attempt") ||
     (pathname || "").endsWith("/progress");
-  const showHeader2 =
+    const showHeader2 =
     pathname === "/" ||
-    (pathname || "").startsWith("/attempt") ||
-    ((pathname || "").startsWith("/learn") &&
-      !(pathname || "").endsWith("/progress"));
-
+    pathname === "/learn" ||
+    pathname === "/learn/";
   return (
     <div className="w-full">
       <div className={styles.staff_header}>

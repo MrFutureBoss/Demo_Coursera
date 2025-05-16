@@ -39,7 +39,7 @@ export default function MyCourses() {
     {
       key: "1",
       label: <span onClick={() => handleFilter("In Progress")}>In Progress</span>,
-      children: <div>There are {count} still in progress courses</div>,
+      children: <div>There are {count} courses in progress</div>,
     },
     {
       key: "2",

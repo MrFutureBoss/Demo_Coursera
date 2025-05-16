@@ -5,7 +5,7 @@ import Link from "next/link";
 import React from "react";
 import type { Course } from "@/store/interface/courses";
 import common from "@/styles/common.module.css";
-import { urlToHyphenated } from "@/utilities/urlToHyphenated";
+import { urlToHyphenated } from "@/utilities/url/urlToHyphenated";
 import {
   MailOutlined,
   SettingOutlined,
@@ -73,7 +73,7 @@ const LearnHome = ({ course }: { course: Course }) => {
           </div>
           <div className="flex justify-center">
             <div className="w-[45rem] max-w-[100vw]">
-             <LessonList courseId={course?.id.toString()}/>
+             <LessonList courseId={course?.id}/>
             </div>
           </div>
         </Col>

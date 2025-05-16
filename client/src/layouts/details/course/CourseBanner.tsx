@@ -4,10 +4,10 @@ import { Button } from "antd";
 import TeamTag from "@/components/tags/TeamTag";
 import type { Course } from "@/store/interface/courses";
 import getTodayFormatted from "@/utilities/timeNow";
-import renderHTML from "@/utilities/renderHTML";
-import { showLess } from "@/utilities/showLess";
+import renderHTML from "@/utilities/convert/renderHTML";
+import { showLess } from "@/utilities/format/showLess";
 import { useRouter } from "next/navigation";
-import { urlToHyphenated } from "@/utilities/urlToHyphenated";
+import { urlToHyphenated } from "@/utilities/url/urlToHyphenated";
 
 export default function CourseBanner({ course }: { course: Course }) {
   const router = useRouter();
